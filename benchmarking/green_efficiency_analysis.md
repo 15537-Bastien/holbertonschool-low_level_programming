@@ -2,59 +2,57 @@
 
 ## Measurement Methodology
 
- j'ai mesuré les temps d'exécution de plusieurs programmes écrits en langage C afin de comparer leurs performances et de mieux comprendre leur efficaci
+Pour cet exercice, j'ai travaillé sur plusieurs programmes en langage C pour voir les différences de temps d'exécution et comprendre ce qui pouvait jouer sur leurs performances.
 
-Pour effectuer ces mesures, j'ai utilisé la fonctionclock et CLOCKS_PER_SEC, qui permettent de convertir le temps mesuré en secondes
+j'ai utilis� �clock() avec CLOCKS_PER_SE afin d'obtenir les résultats en secondes. J'ai aussi lancé les programmes plusieurs fois pour voir si les résultats étaient à peu près les
 
-J'ai exécuté plusieurs fois les programmes afin de vérifier la stabilité des résultats. Pour le progr baselineoop  j'ai effectué trois mesures : 0,227314 seconde, 0,226599 seconde et 0,226520 seconde.
+pour baseline_loop, j'ai obtenu 0,227314 seconde au premier essai, 0,226599 seconde au deuxième et 0,226520 seconde au troisième. Les résultats étaient donc assezche
 
-J'ai également comparé deux algorithmes différents, puis mesuré séparément les différentes étapes du prinstrumentation_lab
+J'ai comparé deux algorithmes,naive et single-pass. Pour finir, j'ai utilis� instrumentation_lab pour mesurer le temps passé dans chaque partie du programme.
 
 ## Observed Performance Differences
 
-Les résultats montrent des différences importantes entre les algorithm.
+Ce qui m'a le plus marqué pendant les tests, c'est la différence de vitesse entre les deux algorithmes.
 
-L'algorithme naive a obtenu un temps moyen de 2,752636 secondes, tandis que l'algorithme single-pass a obtenu un temps moyen de 0,000108 seconde.
+L'algorithme naive a mis en moyenne 2,752636 secondes pour terminer, alors que single-pass a mis seulement 0,000108 seconde.
 
-Cette différence s'explique par leur fonctionnement. L'algorithm single-pas parcourt les données une seule fois, contrairemen l'algorithme naive, qui effectue davantage de passages et répète certaines opératio
+La différence est vraiment important j'ai compris que single-pass parcourt les données une seule fois, alors quenaive répète davantage d'opérations. Cela explique pourquoi il prend beaucoup plus dp
 
-Dans le programme instrumentation_lab, le temps total mesuré était de 0,000771 seconde. La construction des données a nécessité 0,000290 seconde, leur traitement 0,000335 seconde et le calcul du checksum 0,000141 sec
+Avec instrumentation_lab, j'ai pu voir que toutes les parties du programme ne prennent pas le même temps. Sur un total de 0,000771 seconde, la création des données a pris 0,000290 seconde, le traitement 0,000335 seconde et le calcul du checksum 0,000141 onde.
 
-Le traitement des données était donc l'étape la plus longue de cette exécution.
+C'est donc le traitement des données qui a demandé le plus de temps.
 
 ## Relation Between Runtime and Energy Consumption
 
-Le temps d'exécution d'un programme peut avoir une influence sur sa consommation énergétique.
+Je ne faisais pas forcément le lien entre le temps d'exécution d'un programme et sa consommation d'énergie.
 
-l'algorithme single-pass était beaucoup plus rapide que l'algorithmenaive. Cela suggère qu'une meilleure organisation des opérations pourrait permettre de réduire l'énergie néces  certains calculs.
+En comparant les résultats, je me suis rendu compte qu'un programme qui évite des calculs inutiles peut terminer beaucoup plus rapidement.
 
-Cependant, un programme plus rapide ne consomme pas automatiquement moins d'électricité. La consommation dépend également de la puissance utilisée par le processeur pendant son fonctionnement.
+Dans mon cas, single-pass était nettement plus rapide que naive. On peut donc penser qu'il pourrait aussi utiliser moins d'énergie puisqu'il travaille moins longtemps.
 
-il faudrait mesurer directement la consommation électrique des deux algorithmes dans des conditions comparables
+Mais je ne peux pas le confirmer avec ces tests. Je n'ai mesuré que le temps d'exécution, pas la quantité d'électricité réellement consommée.
 
-Les résultats obtenus permettent donc de conclur une amélioration des performances, mais pas de quantifier une économie d'éner.
+Pour savoir lequel consomme le moins, il faudrait faire d'autres mesures avec un outil adapté.
 
 ## Limitations of the Experiment
 
-La principale limite est que j'ai uniquement mesuré les temps d'exécution, sans mesurer directement la consommation électriq
+Il y a  plusieurs limites dans les tests que j'ai réalisés.
 
-Je ne peux donc pas affirmer quel algorithme consomme le moins d'énergie
+La première est que je n'ai pas mesuré directement la consommation électrique. Je peux comparer les vitesses des programmes, mais pas dire exactement combien d'énergie ils utilisent.
 
-Une autre limite concerne le nombre de mesures réalisées. Trois exécutions permettent d'observer certaines variations, mais ne suffisent pas pour garantir des résultats identiques dans toutes les conditions.
+Je n'ai fait que trois essais pour les premières comparaisons. Même si les résultats sont assez proches, ils pourraient changer avec davantage de tests.
 
-Les performances peuvent également être influencées par les programmes exécutés en arrière-plan, la charge du processeur ou les caractéristiques de l'ordinateur.
-
-les résultats concernent uniquement les programmes et les données utilis. Ils ne représentent pa les performances de tous les programme
+Il faut aussi prendre en compte l'ordinateur utilisé. Si d'autres programmes fonctionnent en même temps ou si le processeur est plus sollicité, les résultats peuvent être diffé (j'ai quelques programmes qui tournent en même temp).
 
 ## Practical Engineering Takeaway
 
-Cette expériene m'a permis de comprendre l'importance du choix des algorithmes dans le développement informatique.
+Cet exercice m'a permis de mieux comprendre pourquoi il est important de réfléchià la manière dont on écrit un programme.
 
-J'ai constaté qu'un algorithme qui évite les opérations répétitives peut être beaucoup plus performant qu'une solution moins optimisée.
+Deux algorithmes qui donnent le même résultat peuvent sembler équivalents. Mes mesures montrent qu'ils peuvent avoir des temps d'exécution très différents.
 
-J'ai appri a  mesurer précisément les différentes étapes d'un programme afin d'identifier celles qui nécessitent le plus de t
+Pour mes prochains projets, je pense que ce sera utile de tester plusieurs méthodes plutôt que de garder directement la première solution qui fonctionne.
 
-je pourrai utiliser ces méthodes pour comparer plusieurs solutions, amélioreles programmes et éviter les calculs inutiles.
+Je retiens qu'un code bien pensé peut être plus rapide et éviter du travail inutile au processeur. Cela peut aussi être intéressant pour réduire la consommation d'énergie, même s'il faut des mesures supplémentaires pour lr
 
-l'optimisation des performances peut contribuer �pratique plus �cologique même si des mesures énergétiques supplémentaires restent nécessaires pour démontrer un bénéfice environnemental réel.
+
 
