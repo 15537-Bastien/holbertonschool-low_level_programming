@@ -187,6 +187,11 @@ heap_example: allocations and a deliberate leak
   alice=0x5728eb7b8420 name=0x5728eb7b8440 age=30
   bob=0x5728eb7b8460 name=0x5728eb7b8480 age=41
 ```
+### Transfert de propriété des allocations
+
+La fonction `person_new()` transfère la propriété des allocations à `main()`, qui devient responsable de libérer le nom puis la structure.
+
+Le nom doit être libéré avant la structure afin de conserver l'accès à son adresse. Si ces allocations ne sont pas libérées, une fuite de mémoire se produit.
 
 ### État 1 : avant les allocations
 
